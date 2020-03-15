@@ -1,4 +1,5 @@
 import csv
+import numpy as np
 
 f = open('../words/words.csv','r', encoding='utf8')
 rdr = csv.reader(f)
@@ -26,9 +27,7 @@ for line in rdr:
         j = 0
         i += 1
 
-x = input("원하는 날짜의 단어 : ")
-
-for line in range(30):
-    print(after[int(x)-1][line])
+npafter = np.array(after)
+np.save('./words', npafter)
 
 f.close
