@@ -20,7 +20,7 @@ class word_test(QWidget, form_class):
         self.setWindowIcon(QIcon('./icon.png'))
         
         self.btn_1.clicked.connect(self.btn1clicked)
-        self.btn_2.clicked.connect(self.btn2clicked)
+        # self.btn_2.clicked.connect(self.btn2clicked)
         self.btn_3.clicked.connect(self.btn3clicked)
         self.btn_4.clicked.connect(self.btn4clicked)
         self.btn_quit.clicked.connect(QCoreApplication.instance().quit)
@@ -43,11 +43,15 @@ class word_test(QWidget, form_class):
         self.table.setSpan(0,0,2,4)
         self.table.setItem(0, 0, QTableWidgetItem("this is vocabulary"))
         self.table.item(0,0).setFont(QFont('Times',24 , QFont.Bold))
+
+        for i in range(4):
+            self.table.setColumnWidth(i,self.table.width()/4-9)
+
         for i in [0,2]:
             self.table.setItem(self.mknum-1, i, QTableWidgetItem("영어"))
             self.table.setItem(self.mknum-1, i+1, QTableWidgetItem("뜻"))
         
-        title = ['This is Voca', 'Day '+str(self.x), '애플영어','이름 : ']
+        title = ['This is Voca', 'Day : '+str(self.x), '애플영어','이름 : ']
         for k in range(4):
             self.table.setItem(self.mknum-2,k,QTableWidgetItem(title[k]))
         
@@ -98,6 +102,8 @@ class word_test(QWidget, form_class):
 
         for r in range(self.table.rowCount()-2):
             self.table.resizeRowToContents(r+2)
+
+        
         
     # def btn2clicked(self):
     #     # pdf 생성
